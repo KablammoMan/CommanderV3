@@ -44,6 +44,7 @@ def edit_computer(data):
                 compData[k] = v
                 print(f"{i}. {k}: {v}")
                 print()
+                i+=1
         print()
         accept = True
         choice = input("Choose a Property Number: ")
