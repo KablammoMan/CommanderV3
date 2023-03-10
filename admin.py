@@ -49,7 +49,7 @@ def edit_computer(data):
         accept = True
         choice = input("Choose a Property Number: ")
         try:
-            selectedProp = compData.keys()[int(choice) - 1]
+            selectedProp = list(compData.keys())[int(choice) - 1]
         except:
             accept = False
     edit_property(compData, selectedProp, data["key"])
