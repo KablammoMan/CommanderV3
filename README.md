@@ -4,18 +4,22 @@ Like CommanderV2 (works anywhere) but with Deta Space (better hosting).
 # Imports
 Client:
 - deta
-- socket
-- mouse
-- screeninfo
-- random
 - keyboard
+- mouse
+- os
+- random
+- screeninfo
+- shutil
+- socket
 - subprocess
+- sys
 - threading
 - webbrowser
-- sys
 
 Master:
 - deta
+- os
+- time
 
 # How to Use
 1. Replace `config.api_key` on line 48 of `client.py` and line 6 of `admin.py` with your Deta Project key
