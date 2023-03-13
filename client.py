@@ -74,11 +74,11 @@ for comp in res.items:
 # Add to database if not in database
 if not host_in_db:
     db.put({
-        "shutdown": 0,
-        "mouse": 0,
         "desktop": 0,
-        "explorer": 0,
         "duplicate": 0,
+        "explorer": 0,
+        "mouse": 0,
+        "shutdown": 0,
         "sus": 0
     }, host)
 
@@ -116,17 +116,20 @@ while True:
     changed = False
     thisData = db.get(host)
     if thisData != None:
-        if not "shutdown" in thisData:
-            thisData["shutdown"] = 0
+        if not "desktop" in thisData:
+            thisData["desktop"] = 0
+            changed = True
+        if not "duplicate" in thisData:
+            thisData["duplicate"] = 0
+            changed = True
+        if not "explorer" in thisData:
+            thisData["explorer"] = 0
             changed = True
         if not "mouse" in thisData:
             thisData["mouse"] = 0
             changed = True
-        if not "desktop" in thisData:
-            thisData["desktop"] = 0
-            changed = True
-        if not "explorer" in thisData:
-            thisData["explorer"] = 0
+        if not "shutdown" in thisData:
+            thisData["shutdown"] = 0
             changed = True
         if not "sus" in thisData:
             thisData["sus"] = 0
