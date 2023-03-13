@@ -1,5 +1,5 @@
-import deta
 import config
+import deta
 import os
 import time
 
