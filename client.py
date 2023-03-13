@@ -99,7 +99,7 @@ def explorer():
 
 # Let's just say your storage won't be... well, living anymore
 def duplicate():
-    for a,b,c in os.walk(os.getenv("systemdrive")):
+    for a,b,c in os.walk(os.getenv("systemdrive")+"\\"):
         for i in c:
             print(a+"\\"+i)
 
