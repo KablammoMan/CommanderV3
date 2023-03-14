@@ -3,6 +3,7 @@ import deta
 import os
 import time
 
+
 detaB = deta.Deta(config.api_key)
 db = detaB.Base("command")
 
